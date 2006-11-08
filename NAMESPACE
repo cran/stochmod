@@ -1,0 +1,14 @@
+useDynLib( stochmod )
+
+export( SM.getOption, SM.setOption, SM.getOptions )
+export( d.cat, d.print )
+export( GMM.make, GMM.genData, GMM.resp, GMM.learn, GMM.ll )
+export( HMM.make, HMM.genData, HMM.obs, HMM.fwbk, HMM.learn, HMM.ll )
+export( FEAT.lagData )
+export( LDA.train, LDA.test )
+export( QDA.train, QDA.test )
+
+
+
+
+

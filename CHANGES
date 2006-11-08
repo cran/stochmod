@@ -1,0 +1,7 @@
+Version 1.1
+-----------
+
+-Changed debug.output levels for several functions
+-Fixed documentation incosistencies
+-Added additional argument verification to GMM.learn
+-Added covariance matrix regularization to LDA.train and QDA.train
