@@ -46,7 +46,7 @@ QDA.train <- function( x, y, cov.reg=0.0 )
                   as.integer( K ), as.numeric( cov.reg ),
                   as.integer( SM.getOption( "debug.output" ) ), priors = numeric( K ),
                   means = numeric( K*p ), covmats = numeric( K*p*p ), icovmats = numeric( K*p*p ),
-                  bias = numeric( K ), status = integer(1), info = integer(1) )
+                  bias = numeric( K ), status = integer(1), info = integer(1), DUP=FALSE )
         
         if( res$info != 0 )
           {
@@ -124,7 +124,7 @@ QDA.test <- function( x, clsf )
                   as.numeric(x), as.numeric( clsf$means ), as.numeric( clsf$icovmats ),
                   as.numeric( clsf$bias ),
                   as.integer( N ), as.integer( p ),
-                  as.integer( K ), i = integer( N ) )
+                  as.integer( K ), i = integer( N ), DUP=FALSE )
 
         i <- res$i
         }

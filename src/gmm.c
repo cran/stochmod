@@ -155,13 +155,6 @@ int GMM_learn( double** x, double** v, int N, int M, int K, int p,
       sigma_prev = make3D( K, p, p );
     }
 
-  /*  printf( "Mixture coefficients:\n" );
-  disp_vec( K, pi );
-  printf( "Means:\n" );
-  disp_mat( K, p, mu );
-  printf( "Covariance matrices:\n" );
-  disp_3D( K, p, p, sigma );*/
-
   // Run EM algorithm
   iter = 0;
   while( 1 )
@@ -205,6 +198,11 @@ int GMM_learn( double** x, double** v, int N, int M, int K, int p,
       if( status != 0 ) break;
 
       LL = vec_sum( N, LLvec );
+      if( isnan(LL) || isinf(LL) )
+	{
+	  status = 1;
+	  break;
+	}
 	
       if( debug_output > 2 || (debug_output > 1 && (iter%10) == 0) )
 	printf( "Log likelihood at iteration %d is %f\n", iter, LL );

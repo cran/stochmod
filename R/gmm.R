@@ -85,7 +85,7 @@ GMM.resp <- function( x, gmm )
       {
         res <- .C( "GMMrespR", as.numeric(x), as.numeric(gmm$mu), as.numeric(gmm$sigma), as.numeric(gmm$pi),
                   as.integer(N), as.integer(p), as.integer(K), resp=numeric(N*K), LL=numeric(N),
-                  status=integer(1), info=integer(N) )
+                  status=integer(1), info=integer(N), DUP=FALSE )
 
         if( res$status == 1 )
           stop( paste("GMM.resp: Covariance matrix is singular for component", res$info[1]) )
@@ -214,14 +214,14 @@ GMM.learn <- function( xL, K, vL=NULL, gmm.init=NULL, cov.reg=0.0, tol=1e-03, LL
                   as.integer(min.iter), as.integer(max.iter),
                   as.integer(SM.getOption("debug.output")),
                   pi = numeric( K ), mu = numeric( K*p ), sigma = numeric( K*p*p ), status = integer( 1 ),
-                  NAOK=TRUE )
+                  NAOK=TRUE, DUP=FALSE )
 
         if( res$status == 1 )
-          stop( "Covariance matrix is singular for one of the clusters" )
+          stop( "Covariance matrix is singular for one of the clusters\n" )
         else if( res$status == 2 )
           stop( "Some points were not assigned to a cluster during the E-Step\n" )
         else if( res$status == 3 )
-          stop( "No points were assigned to one of the clusters" )
+          stop( "No points were assigned to one of the clusters\n" )
         else
           return( list(
                        pi = res$pi,

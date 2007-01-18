@@ -47,7 +47,8 @@ LDA.train <- function( x, y, cov.reg=0.0 )
         res <- .C( "LDAtrain", as.numeric(x), as.integer(y.i), as.integer(N), as.integer(p), as.integer(K),
                   as.numeric( cov.reg ),
                   as.integer( SM.getOption( "debug.output" ) ), priors=numeric(K), means=numeric(K*p),
-                  covmat=numeric(p*p), weights=numeric(K*(p+1)), status=integer(1) )
+                  covmat=numeric(p*p), weights=numeric(K*(p+1)), status=integer(1),
+                  DUP=FALSE )
 
         if( res$status == 1 )
           stop( "The common covariance matrix is singular" )

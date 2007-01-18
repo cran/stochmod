@@ -1,3 +1,9 @@
+Version 1.2
+-----------
+
+-Fixed an issue where C code of GMM.learn would hang when encountering numerical instability in high-dimensional datasets
+-No longer duplicating inputs to .C calls
+
 Version 1.1
 -----------
 

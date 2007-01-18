@@ -83,7 +83,7 @@ HMM.obs <- function( x, hmm )
         ## Attempt to run C code
         res <- .C( "HMMobsR", as.numeric(x), as.numeric(hmm$pi), as.numeric(hmm$A), as.numeric(hmm$mu),
                   as.numeric(hmm$sigma), as.integer(N), as.integer(K), as.integer(p),
-                  B=numeric(N*K), status=integer(1), info=integer(1) )
+                  B=numeric(N*K), status=integer(1), info=integer(1), DUP=FALSE )
         if( res$status == 1 )
           stop( paste( "HMM.obs: Covariance matrix is singular for state", res$info ) )
         else
@@ -129,7 +129,7 @@ HMM.fwbk <- function( x, hmm )
         res <- .C( "HMMfwbkR", as.numeric(x), as.numeric(hmm$pi), as.numeric(hmm$A), as.numeric(hmm$mu),
                   as.numeric(hmm$sigma), as.integer( N ), as.integer( K ), as.integer( p ),
                   alpha=numeric(N*K), beta=numeric(N*K), c=numeric(N), gamma=numeric(N*K),
-                  xi=numeric( (N-1)*K*K ), status=integer(1) )
+                  xi=numeric( (N-1)*K*K ), status=integer(1), DUP=FALSE )
 
         if( res$status == 2 )
           {
@@ -298,7 +298,7 @@ HMM.learn <- function( xL, K, vL=NULL, hmm.init=NULL , tol=1e-03, LLstop=Inf, mi
                   as.numeric(tol), as.numeric(LLstop), as.integer(min.iter), as.integer(max.iter),
                   as.integer(SM.getOption("debug.output")),
                   pi=numeric(K), A=numeric(K*K), mu=numeric(K*p), sigma=numeric(K*p*p),
-                  status = integer(1), NAOK=TRUE )
+                  status = integer(1), NAOK=TRUE, DUP=FALSE )
 
         if( res$status == 1 )
           stop( "Covariance matrix is singular for one of the states" )
