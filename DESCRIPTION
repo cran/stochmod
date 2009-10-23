@@ -1,10 +1,13 @@
 Package: stochmod
 Title: Stochastic Modeling
-Version: 1.2
+Version: 1.2.1
 Author: Artem Sokolov
-Description: Learning and inference algorithms for a variety of probabilistic models
+Description: Learning and inference algorithms for a variety of
+        probabilistic models
 Maintainer: Artem Sokolov <artem.sokolov@gmail.com>
-License: GPL version 2 or newer
+License: GPL (>= 2)
 Depends: R (>= 2.4.0), mvtnorm
 URL: http://www.cs.colostate.edu/~sokolov/stochmod.html
-Packaged: Thu Jan 18 16:16:52 2007; sokolov
+Packaged: 2009-10-23 21:43:31 UTC; sokolov
+Repository: CRAN
+Date/Publication: 2009-10-26 20:27:41

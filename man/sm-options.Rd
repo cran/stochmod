@@ -13,8 +13,11 @@ SM.getOptions()
 \arguments{
   \item{name}{
     Argument name. Currently supported options are:
-    \item{debug.output:}{Amount of debug output. (integer)}
-    \item{pure.R:}{whether exclusively R code is to be used. (logical)}
+    \itemize{
+      \item{debug.output:}{Amount of debug output. (integer)}
+      \item{pure.R:}{whether exclusively R code is to be
+	used. (logical)}
+    }
   }
   \item{value}{Agument value}
 }

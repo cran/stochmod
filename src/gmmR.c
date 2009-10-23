@@ -72,7 +72,6 @@ void GMMlearnR( double* i_x, double* i_v, int* i_N, int* i_M, int* i_K, int* i_p
 		int* i_min_iter, int* i_max_iter, int* debug_output,
 		double* o_pi, double* o_mu, double* o_sigma, int* o_status )
 {
-  int i, j;
   double** v = NULL;
 
   // Retrieve parameters

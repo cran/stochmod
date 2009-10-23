@@ -398,7 +398,7 @@ void mult_mat_vec( int m, int p, double** m1, double* v, double* res )
 double dot_vec_vec( int n, const double* v1, const double* v2 )
 {
   int i;
-  double res;
+  double res = 0.0;
   
   for( i = 0; i < n; i++ )
     res += v1[i] * v2[i];
@@ -496,7 +496,6 @@ void mat_transpose( int m, int n, double** A, double** B )
 // 1 - Matrix is singular
 int covmat_inverse( int n, double** A, double** res )
 {
-  int i, j;
   int req = -1;
   double opt = 0;
   int lwork = 0;
@@ -564,8 +563,6 @@ int covmat_eigenvals( int n, double** A, double* evl )
   double* a = (double*)malloc( n*n*sizeof(double) );
   double* wi = (double*)malloc( n*sizeof(double) );
 
-  int i, j;
-  double res = 1;
   int req = -1;
   double opt = 0;
   int lwork = 0;
@@ -664,12 +661,11 @@ void cov_mat( int N, int p, double** A, double** res, double* means )
   // Create local storage
   int i, j, k;
   double** A_cntr = make2D( N, p );
-  double* i_means;
 
   // Mean-center the data, computing the means if necessary
   if( means == NULL )
     {
-      i_means = make1D( p );
+      double* i_means = make1D( p );
 
       for( i = 0; i < p; i++ )
 	{
@@ -681,6 +677,8 @@ void cov_mat( int N, int p, double** A, double** res, double* means )
 
       for( i = 0; i < N; i++) for( j = 0; j < p; j++ )
 	A_cntr[i][j] = A[i][j] - i_means[j];
+
+      free( i_means );
     }
   else
     {
@@ -700,7 +698,4 @@ void cov_mat( int N, int p, double** A, double** res, double* means )
 
   // Free up memory
   free2D( A_cntr, N );
-
-  if( means == NULL )
-    free( i_means );
 }

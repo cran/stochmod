@@ -33,7 +33,7 @@ int GMM_resp( double** x, double** mu, double*** sigma, double* pi,
 {
   // Create local storage
   int i, j;
-  int status;
+  int status = 0;
   double* p_x = make1D( N );
   double** post_prob = make2D( K, N );
 
@@ -132,8 +132,8 @@ int GMM_learn( double** x, double** v, int N, int M, int K, int p,
   int status = 0;
   int i, j, k, l;
   int iter;
-  double LL, LLprev, LLbase;
-  double LLval, LLval_prev;
+  double LL = -1.0 / 0.0, LLprev = -1.0 / 0.0, LLbase = -1.0 / 0.0;
+  double LLval, LLval_prev = -1.0 / 0.0;
 
   int* info = malloc( N*sizeof(int) );
   double* LLvec = make1D( N );

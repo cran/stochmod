@@ -83,7 +83,7 @@ int HMM_fwbk( double** x, double* pi, double** A, double** mu, double*** sigma, 
 	      double** alpha, double** beta, double* c, double** gamma, double*** xi )
 {
   // Create local storage
-  int t, i, j, k;
+  int t, i;
   int status, info;
 
   double val;
@@ -181,7 +181,7 @@ int HMM_LL( double** x, double* pi, double** A, double** mu, double*** sigma, in
   // Need to compute forward variables and the corresponding scaling coefficients
 
   // Create local storage
-  int t, i, j, k;
+  int i;
   int status, info;
   
   double* c = make1D( N );
@@ -270,7 +270,6 @@ int HMM_learn( double*** x, double*** v, int nSeqs, int mSeqs, int* N, int* M, i
 
   // Create local storage
   int i, j, k, l, t;
-  double v1, v2, v3;
 
   // Concatenate all training data together, some routines require it
   int N_total = 0;
@@ -323,8 +322,8 @@ int HMM_learn( double*** x, double*** v, int nSeqs, int mSeqs, int* N, int* M, i
 
   // Run EM
   int status = 0;
-  double LL, LLbase, LLprev;
-  double LLval, LLval_prev;
+  double LL = -1.0 / 0.0, LLbase = -1.0 / 0.0, LLprev = -1.0 / 0.0;
+  double LLval, LLval_prev = -1.0 / 0.0;
   double LLval_temp;
   int iter = 0;
   while( 1 )
